@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+
+        #calculator {
+            background-color: #0202023d;
+            border-radius: 10px;
+            /* box-shadow: 10px 10px 10px 10px #1d1c1c8c; */
+
+            box-shadow: 0 0 40px hsla(0, 4%, 84%, 0.1);
+            padding: 20px;
+            width: 350px;
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.3s ease-in-out;
+            border: 2px solid rgb(56, 54, 54);
+
+        }
+
+        #calculator:hover {
+            /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); */
+        }
+
+
+        .button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            transition: background-color 0.1s ease-in-out;
+            /* background-color: black; */
+            /* color: white; */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background-color: #9d9b9b;
+            border: 3px solid #4CAF50;
+
+            color: red;
+        }
+
+        .button.delete {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+
+        .button.change-color {
+            /* width: 100px; */
+            background-color: #060606;
+            color: #fff;
+            /* margin-top: 22px; */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .oneand {
+            background-color: black;
+            /* background-color: rgb(227, 17, 17); */
+            color: white;
+            border: 2px solid rgb(59, 58, 58);
+            /* box-shadow: 5px 10px 5px 10px #1d1c1c8c; */
+
+
+
+        }
+
+        .oneand:hover {
+            border: 3px solid #4CAF50;
+
+        }
+
+        .on {
+            width: 300px;
+            height: 60px;
+            /* box-shadow: 10px 10px 10px 10px #1d1c1c8c; */
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* z-index: 9999; */
+            /* border: 2px solid rgb(238, 13, 13); */
+
+        }
+
+
+        .divv::before {
+            content: "";
+            background: conic-gradient(red, green, yellow, magenta 90deg, transparent 00deg);
+            width: 500px;
+            height: 200px;
+            position: absolute;
+            animation: rotate 4s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(720deg);
+            }
+        }
+
+        .inputt {
+            height: 50px;
+            width: 290px;
+            background-color: black;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            color: #4CAF50;
+            border-right: 2px solid red;
+            border-left: 2px solid red;
+            /* opacity: .5; */
+            font-size: 20px;
+            box-sizing: border-box;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .inputt:hover {
+            border: 2px solid black;
+            border-right: 2px solid #4CAF50;
+            border-left: 2px solid #4CAF50;
+
+        }
+
+        .colors {
+            display: flex;
+
+            text-align: start;
+            margin-left: 15px;
+        }
+
+
+        #calculat {
+            /* display: flex; */
+            max-width: 300px;
+        
+            /* text-align: center; */
+        }
+
+        #emoji-container {
+            max-height: 100px;
+            overflow-y: scroll;
+            background-color: black;
+            color: black;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #emoji-button {
+            margin-top: 5px;
+            width: 50px;
+            font-size: 22px;
+            height: 50px;
+            background-color:black;
+            color: red;
+            border: 2px solid rgb(59, 58, 58);
+            /* box-shadow: 5px 10px 5px 10px #1d1c1c8c; */
+            border-radius: 5px;
+        }
+        #emoji-button:hover {
+            border: 3px solid #4CAF50;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="calculator">
+        <div class="divv on">
+            <div class="on">
+                <input id="result" class="inputt" type="text" placeholder="Calculate sumething something...">
+            </div>
+        </div>
+        <div>
+            <div class="colors">
+                <div>
+
+                    <button class="button  oneand   delete" onclick="cut()"><i class="fa-solid fa-delete-left"></i></button>
+                </div>
+                <div>
+
+                    <button class="button  oneand   change-color" onclick="changeColor()"><span style="color: red;"
+                            class="material-symbols-outlined">
+                            palette
+                        </span>
+                    </button>
+                </div>
+                    
+                <div id="calculat">
+                    <div id="emoji-container" class="hide">
+                        
+                    </div>
+                    <div id="buttons">
+                        <button id="emoji-button">😀</button>
+                       
+                    </div>
+                </div>
+                </div>
+            <br>
+            <button class="button  oneand    " onclick="number('7')">7</button>
+            <button class="button  oneand  " onclick="number('8')">8</button>
+            <button class="button  oneand  " onclick="number('9')">9</button>
+            <button class="button  oneand  " onclick="number('/')">/</button>
+
+            <button class="button  oneand  " onclick="number('4')">4</button>
+            <button class="button  oneand  " onclick="number('5')">5</button>
+            <button class="button  oneand  " onclick="number('6')">6</button>
+            <button class="button  oneand  " onclick="number('*')">*</button>
+
+            <button class="button  oneand  " onclick="number('1')">1</button>
+            <button class="button  oneand  " onclick="number('2')">2</button>
+            <button class="button  oneand  " onclick="number('3')">3</button>
+            <button class="button  oneand  " onclick="number('-')">-</button>
+
+            <button class="button  oneand  " onclick="number('0')">0</button>
+            <button class="button  oneand  " onclick="number('.')">.</button>
+            <button class="button  oneand  " onclick="calculate()">=</button>
+            <button class="button  oneand  " onclick="number('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+
+        const a = document.getElementById('result');
+        const number = value => a.value += value;
+        const cut = () => a.value = a.value.slice(0, -1);
+        const calculate = () => {
+
+            if (a.value = eval(a.value)) {
+                return a;
+            } else {
+                a.value = 'Error';
+            }
+
+        };
+        const changeColor = () => document.getElementById('calculator').style.backgroundColor = getRandomColor()
+
+        const getRandomColor = () => '#' + Math.random().toString(16).substr(-6);
+
+        const emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '😍', '🥰', '😋', '😎', '😜', '😐', '😶', '😏', '😌', '😔', '🤨', '😳', '😬', '🙄', '😪', '😴', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '🥵', '🥶', '🥴', '😵', '🤯', '🤠', '🥳', '😎', '😕', '😟', '🙁', '😮', '😯', '😲', '😳', '😦', '😧', '😨'];
+       
+        const [emojic, emojibtn] = ['emoji-container', 'emoji-button'].map(id => document.getElementById(id));
+
+        const toggleEmojiContainer = () => {
+            emojic.classList.toggle('hide');
+            emojic.innerHTML = !emojic.classList.contains('hide') ? emojis.map(emoji => `<button>${emoji}</button>`).join('') : '';
+        };
+
+        const handleEmojiClick = (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                toggleEmojiContainer();
+            }
+        };
+
+        emojibtn.addEventListener('click', toggleEmojiContainer);
+        emojic.addEventListener('click', handleEmojiClick);
+        // Math.random() generates a random number between 0 and 1.
+        // toString(16) converts the random number to a hexadecimal string.
+        // substr(-6) extracts the last 6 characters, ensuring that the result is a 6-character hex code.
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
